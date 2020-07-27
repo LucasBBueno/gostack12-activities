@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
+import cors from 'cors';
 
 import routes from './routes/index';
 import uploadConfig from './config/upload';
@@ -11,6 +12,7 @@ import './database/index';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
@@ -25,7 +27,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
 
   console.error(err);
 
-  // Erro inesperador
+  // Erro inesperado
   return response.status(500).json({
     status: 'error',
     message: 'Internal server error',
