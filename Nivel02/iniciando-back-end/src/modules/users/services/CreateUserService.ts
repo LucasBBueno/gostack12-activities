@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 import { hash } from 'bcryptjs';
 import { injectable, inject } from 'tsyringe';
 
